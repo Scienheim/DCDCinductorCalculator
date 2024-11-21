@@ -32,55 +32,62 @@ root = tk.Tk()
 root.title("电感计算器")
 
 # 设置窗口大小
-root.geometry("400x400")
+root.geometry("600x400")
+
+# 使窗口大小可调整，并且控件大小会自动调整
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
+root.grid_columnconfigure(1, weight=2)
+root.grid_columnconfigure(2, weight=2)
+root.grid_columnconfigure(3, weight=1)
 
 # 电路类型选择
 selected_circuit = tk.StringVar(value="Buck")
 label_circuit = tk.Label(root, text="选择电路类型:")
-label_circuit.grid(row=0, column=0, padx=10, pady=5)
+label_circuit.grid(row=0, column=0, padx=10, pady=10, sticky="e")
 
 radio_buck = tk.Radiobutton(root, text="Buck", variable=selected_circuit, value="Buck")
-radio_buck.grid(row=0, column=1, padx=10, pady=5)
+radio_buck.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
 radio_boost = tk.Radiobutton(root, text="Boost", variable=selected_circuit, value="Boost")
-radio_boost.grid(row=0, column=2, padx=10, pady=5)
+radio_boost.grid(row=0, column=2, padx=10, pady=10, sticky="w")
 
 radio_buck_boost = tk.Radiobutton(root, text="Buck-Boost", variable=selected_circuit, value="Buck-Boost")
-radio_buck_boost.grid(row=0, column=3, padx=10, pady=5)
+radio_buck_boost.grid(row=0, column=3, padx=10, pady=10, sticky="w")
 
 # 输入框标签和输入框
 label_V_in = tk.Label(root, text="输入电压 (V_in):")
-label_V_in.grid(row=1, column=0, padx=10, pady=5, sticky="e")
+label_V_in.grid(row=1, column=0, padx=10, pady=10, sticky="e")
 entry_V_in = tk.Entry(root)
-entry_V_in.grid(row=1, column=1, padx=10, pady=5)
+entry_V_in.grid(row=1, column=1, padx=10, pady=10, sticky="ew")
 
 label_V_out = tk.Label(root, text="输出电压 (V_out):")
-label_V_out.grid(row=2, column=0, padx=10, pady=5, sticky="e")
+label_V_out.grid(row=2, column=0, padx=10, pady=10, sticky="e")
 entry_V_out = tk.Entry(root)
-entry_V_out.grid(row=2, column=1, padx=10, pady=5)
+entry_V_out.grid(row=2, column=1, padx=10, pady=10, sticky="ew")
 
 label_I_out = tk.Label(root, text="负载电流 (I_out):")
-label_I_out.grid(row=3, column=0, padx=10, pady=5, sticky="e")
+label_I_out.grid(row=3, column=0, padx=10, pady=10, sticky="e")
 entry_I_out = tk.Entry(root)
-entry_I_out.grid(row=3, column=1, padx=10, pady=5)
+entry_I_out.grid(row=3, column=1, padx=10, pady=10, sticky="ew")
 
 label_f_s = tk.Label(root, text="开关频率 (f_s):")
-label_f_s.grid(row=4, column=0, padx=10, pady=5, sticky="e")
+label_f_s.grid(row=4, column=0, padx=10, pady=10, sticky="e")
 entry_f_s = tk.Entry(root)
-entry_f_s.grid(row=4, column=1, padx=10, pady=5)
+entry_f_s.grid(row=4, column=1, padx=10, pady=10, sticky="ew")
 
 label_delta_I_L = tk.Label(root, text="电流纹波 (ΔI_L):")
-label_delta_I_L.grid(row=5, column=0, padx=10, pady=5, sticky="e")
+label_delta_I_L.grid(row=5, column=0, padx=10, pady=10, sticky="e")
 entry_delta_I_L = tk.Entry(root)
-entry_delta_I_L.grid(row=5, column=1, padx=10, pady=5)
+entry_delta_I_L.grid(row=5, column=1, padx=10, pady=10, sticky="ew")
 
 # 结果标签
 result_label = tk.Label(root, text="计算得到的电感值：")
-result_label.grid(row=6, column=0, columnspan=4, padx=10, pady=20)
+result_label.grid(row=6, column=0, columnspan=4, padx=10, pady=20, sticky="nsew")
 
 # 计算按钮
 calculate_button = tk.Button(root, text="计算电感", command=calculate_inductor)
-calculate_button.grid(row=7, column=0, columnspan=4, pady=10)
+calculate_button.grid(row=7, column=0, columnspan=4, pady=20, sticky="nsew")
 
 # 运行程序
 root.mainloop()
