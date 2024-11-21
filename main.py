@@ -22,21 +22,18 @@ def calculate_inductor():
 
         # 根据选择的公式来计算电感
         if selected_circuit.get() == "Buck":
-            L_min = (V_out * (V_in - V_out)) / (f_s * delta_I_L_min * V_in)
-            L_max = (V_out * (V_in - V_out)) / (f_s * delta_I_L_max * V_in)
+            L_max = (V_out * (V_in - V_out)) / (f_s * delta_I_L_min * V_in)
+            L_min = (V_out * (V_in - V_out)) / (f_s * delta_I_L_max * V_in)
         elif selected_circuit.get() == "Boost":
-            L_min = (V_in * (V_out - V_in)) / (f_s * delta_I_L_min * V_out)
-            L_max = (V_in * (V_out - V_in)) / (f_s * delta_I_L_max * V_out)
-        elif selected_circuit.get() == "Buck-Boost":
-            L_min = (V_in * (V_out - V_in)) / (f_s * delta_I_L_min * V_out)
-            L_max = (V_in * (V_out - V_in)) / (f_s * delta_I_L_max * V_out)
+            L_max = (V_in * (V_out - V_in)) / (f_s * delta_I_L_min * V_out)
+            L_min = (V_in * (V_out - V_in)) / (f_s * delta_I_L_max * V_out)
 
         # 将电感值转换为 μH
         L_min_uH = L_min * 1e6  # 电感最小值 (μH)
         L_max_uH = L_max * 1e6  # 电感最大值 (μH)
 
         # 显示计算结果
-        result_label.config(text=f"电感最小值：{L_min_uH:.6f} μH\n电感最大值：{L_max_uH:.6f} μH")
+        result_label.config(text=f"{L_min_uH:.6f} μH ≤ L ≤ {L_max_uH:.6f} μH")
     except ValueError:
         messagebox.showerror("输入错误", "请输入有效的数字！")
     except ZeroDivisionError:
@@ -48,7 +45,7 @@ root = tk.Tk()
 root.title("电感计算器")
 
 # 设置窗口大小
-root.geometry("600x450")
+root.geometry("480x450")
 
 # 使窗口大小可调整，并且控件大小会自动调整
 root.grid_rowconfigure(0, weight=1)
@@ -65,45 +62,50 @@ label_circuit.grid(row=0, column=0, padx=10, pady=10, sticky="e")
 radio_buck = tk.Radiobutton(root, text="Buck", variable=selected_circuit, value="Buck")
 radio_buck.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
-radio_boost = tk.Radiobutton(root, text="Boost", variable=selected_circuit, value="Boost")
-radio_boost.grid(row=0, column=2, padx=10, pady=10, sticky="w")
-
-radio_buck_boost = tk.Radiobutton(root, text="Buck-Boost", variable=selected_circuit, value="Buck-Boost")
-radio_buck_boost.grid(row=0, column=3, padx=10, pady=10, sticky="w")
+radio_buck_boost = tk.Radiobutton(root, text="Buck-Boost", variable=selected_circuit, value="Boost")
+radio_buck_boost.grid(row=0, column=2, padx=10, pady=10, sticky="w")
 
 # 输入框标签和输入框
-label_V_in = tk.Label(root, text="输入电压 (V_in):")
+label_V_in = tk.Label(root, text="最大输入电压 Vin(MAX):")
 label_V_in.grid(row=1, column=0, padx=10, pady=10, sticky="e")
 entry_V_in = tk.Entry(root)
 entry_V_in.grid(row=1, column=1, padx=10, pady=10, sticky="ew")
+label_V_in_unit = tk.Label(root, text="V")
+label_V_in_unit.grid(row=1, column=2, padx=10, pady=10, sticky="e")
 
-label_V_out = tk.Label(root, text="输出电压 (V_out):")
+label_V_out = tk.Label(root, text="输出电压 Vout:")
 label_V_out.grid(row=2, column=0, padx=10, pady=10, sticky="e")
 entry_V_out = tk.Entry(root)
 entry_V_out.grid(row=2, column=1, padx=10, pady=10, sticky="ew")
+label_V_out_unit = tk.Label(root, text="V")
+label_V_out_unit.grid(row=2, column=2, padx=10, pady=10, sticky="e")
 
-label_I_out = tk.Label(root, text="负载电流 (I_out):")
+label_I_out = tk.Label(root, text="最大负载电流 I_out:")
 label_I_out.grid(row=3, column=0, padx=10, pady=10, sticky="e")
 entry_I_out = tk.Entry(root)
 entry_I_out.grid(row=3, column=1, padx=10, pady=10, sticky="ew")
+label_I_out_unit = tk.Label(root, text="A")
+label_I_out_unit.grid(row=3, column=2, padx=10, pady=10, sticky="e")
 
-label_f_s_kHz = tk.Label(root, text="开关频率 (f_s) kHz:")
+label_f_s_kHz = tk.Label(root, text="开关频率 fs:")
 label_f_s_kHz.grid(row=4, column=0, padx=10, pady=10, sticky="e")
 entry_f_s_kHz = tk.Entry(root)
 entry_f_s_kHz.grid(row=4, column=1, padx=10, pady=10, sticky="ew")
+label_f_s_kHz_unit = tk.Label(root, text="kHz")
+label_f_s_kHz_unit.grid(row=4, column=2, padx=10, pady=10, sticky="e")
 
-label_gamma_min = tk.Label(root, text="最小纹波系数 (γ_min):")
+label_gamma_min = tk.Label(root, text="最小纹波系数 γmin:")
 label_gamma_min.grid(row=5, column=0, padx=10, pady=10, sticky="e")
 entry_gamma_min = tk.Entry(root)
 entry_gamma_min.grid(row=5, column=1, padx=10, pady=10, sticky="ew")
 
-label_gamma_max = tk.Label(root, text="最大纹波系数 (γ_max):")
+label_gamma_max = tk.Label(root, text="最大纹波系数 γmax:")
 label_gamma_max.grid(row=6, column=0, padx=10, pady=10, sticky="e")
 entry_gamma_max = tk.Entry(root)
 entry_gamma_max.grid(row=6, column=1, padx=10, pady=10, sticky="ew")
 
 # 结果标签
-result_label = tk.Label(root, text="电感最小值和最大值：")
+result_label = tk.Label(root, text="电感取值区间：")
 result_label.grid(row=7, column=0, columnspan=4, padx=10, pady=20, sticky="nsew")
 
 # 计算按钮

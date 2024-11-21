@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="003f56bd-d4d1-4712-a96c-9714f52ade6e" name="Changes" comment="窗口自适应">
+    <list default="true" id="003f56bd-d4d1-4712-a96c-9714f52ade6e" name="Changes" comment="单位修改">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -79,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732175124996</updated>
-      <workItem from="1732175126432" duration="2342000" />
+      <workItem from="1732175126432" duration="3606000" />
     </task>
     <task id="LOCAL-00001" summary="initial comment">
       <option name="closed" value="true" />
@@ -97,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732175575550</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="单位修改">
+      <option name="closed" value="true" />
+      <created>1732178855087</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732178855087</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,9 +125,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial comment" />
     <MESSAGE value="窗口自适应" />
-    <option name="LAST_COMMIT_MESSAGE" value="窗口自适应" />
+    <MESSAGE value="单位修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="单位修改" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/inductorCal$main.coverage" NAME="main Coverage Results" MODIFIED="1732178804035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/inductorCal$main.coverage" NAME="main Coverage Results" MODIFIED="1732180047904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
