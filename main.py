@@ -39,6 +39,10 @@ def calculate_inductor():
     except ZeroDivisionError:
         messagebox.showerror("计算错误", "输入参数导致除数为零，请检查输入值！")
 
+# 自动切换到下一个输入框的函数
+def switch_focus(event, next_widget):
+    next_widget.focus()
+
 
 # 创建窗口
 root = tk.Tk()
@@ -70,6 +74,7 @@ label_V_in = tk.Label(root, text="最大输入电压 Vin(MAX):")
 label_V_in.grid(row=1, column=0, padx=10, pady=10, sticky="e")
 entry_V_in = tk.Entry(root)
 entry_V_in.grid(row=1, column=1, padx=10, pady=10, sticky="ew")
+entry_V_in.bind("<Return>", lambda event: switch_focus(event, entry_V_out))
 label_V_in_unit = tk.Label(root, text="V")
 label_V_in_unit.grid(row=1, column=2, padx=10, pady=10, sticky="e")
 
@@ -77,6 +82,7 @@ label_V_out = tk.Label(root, text="输出电压 Vout:")
 label_V_out.grid(row=2, column=0, padx=10, pady=10, sticky="e")
 entry_V_out = tk.Entry(root)
 entry_V_out.grid(row=2, column=1, padx=10, pady=10, sticky="ew")
+entry_V_out.bind("<Return>", lambda event: switch_focus(event, entry_I_out))
 label_V_out_unit = tk.Label(root, text="V")
 label_V_out_unit.grid(row=2, column=2, padx=10, pady=10, sticky="e")
 
@@ -84,6 +90,7 @@ label_I_out = tk.Label(root, text="最大负载电流 I_out:")
 label_I_out.grid(row=3, column=0, padx=10, pady=10, sticky="e")
 entry_I_out = tk.Entry(root)
 entry_I_out.grid(row=3, column=1, padx=10, pady=10, sticky="ew")
+entry_I_out.bind("<Return>", lambda event: switch_focus(event, entry_f_s_kHz))
 label_I_out_unit = tk.Label(root, text="A")
 label_I_out_unit.grid(row=3, column=2, padx=10, pady=10, sticky="e")
 
@@ -91,6 +98,7 @@ label_f_s_kHz = tk.Label(root, text="开关频率 fs:")
 label_f_s_kHz.grid(row=4, column=0, padx=10, pady=10, sticky="e")
 entry_f_s_kHz = tk.Entry(root)
 entry_f_s_kHz.grid(row=4, column=1, padx=10, pady=10, sticky="ew")
+entry_f_s_kHz.bind("<Return>", lambda event: switch_focus(event, entry_gamma_min))
 label_f_s_kHz_unit = tk.Label(root, text="kHz")
 label_f_s_kHz_unit.grid(row=4, column=2, padx=10, pady=10, sticky="e")
 
@@ -98,11 +106,13 @@ label_gamma_min = tk.Label(root, text="最小纹波系数 γmin:")
 label_gamma_min.grid(row=5, column=0, padx=10, pady=10, sticky="e")
 entry_gamma_min = tk.Entry(root)
 entry_gamma_min.grid(row=5, column=1, padx=10, pady=10, sticky="ew")
+entry_gamma_min.bind("<Return>", lambda event: switch_focus(event, entry_gamma_max))
 
 label_gamma_max = tk.Label(root, text="最大纹波系数 γmax:")
 label_gamma_max.grid(row=6, column=0, padx=10, pady=10, sticky="e")
 entry_gamma_max = tk.Entry(root)
 entry_gamma_max.grid(row=6, column=1, padx=10, pady=10, sticky="ew")
+entry_gamma_max.bind("<Return>", lambda event: calculate_inductor())
 
 # 结果标签
 result_label = tk.Label(root, text="电感取值区间：")
